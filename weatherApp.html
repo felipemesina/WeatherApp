@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Weather App</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('form').submit(function() {
+                var x= $('#text_entered').val();
+                var keyID= "&appid=e4ca400030532960366700aab69e26c4";
+                $.get( 'http://api.openweathermap.org/data/2.5/weather?q=' + x + keyID ,function(res) {
+                    var weather_info="";
+                    var farenheit=(res['main']['temp']-273)*1.8+32;
+                    weather_info += "<h1>" + res['name'] + "</h1>";
+                    weather_info += "<h2>"+ Math.floor(farenheit) + " ℉" + "</h2>";
+                    $('#weather_box').html(weather_info);
+                    });
+                return false;
+            });
+        });
+            
+
+    
+    </script>
+</head>
+<body>
+    <form action="">
+        <input id="text_entered" type="text" value="">
+        <input type="submit" name="" id="">
+    </form>
+
+    <div id="weather_box"></div>
+
+
+    
+</body>
+</html>
+
